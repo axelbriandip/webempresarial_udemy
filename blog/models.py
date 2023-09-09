@@ -24,7 +24,9 @@ class Post(models.Model):
     # el autor es el User actual, y si se elimina el usuario (on_delete), se eliminan todos sus Posts
     author = models.ForeignKey(User, verbose_name='Autor', on_delete=models.CASCADE)
     # Alternativa a CASCADE: PROTECT (pero habría que agregar null y blank)
-    categories = models.ManyToManyField(Category, verbose_name='Categoría(s)')
+
+    # el related_name es para filtrar por categorías en el template
+    categories = models.ManyToManyField(Category, verbose_name='Categoría(s)', related_name='get_posts')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Creación')
     update = models.DateTimeField(auto_now=True, verbose_name='Edición')
 
