@@ -16,6 +16,10 @@
             </h2>
             <div class="section-content">
               {{page.content}}
+              {% if user.is_authenticated %}
+                <!-- Plantilla: 'admin:App_Model_Action' obj.id -->
+                <p><a href="{% url 'admin:pages_page_change' page.id %}">Editar</a></p>
+              {% endif %}
             </div>
           </div>
         </div>
